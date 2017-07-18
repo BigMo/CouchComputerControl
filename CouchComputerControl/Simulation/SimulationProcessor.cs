@@ -35,6 +35,7 @@ namespace CouchComputerControl.Simulation
                 controller = value;
                 if (controller != null)
                 {
+                    AddDefaultProfile();
                     CursorPositon = (Vector2)(Cursor.Position);
                     controller.OnUpdateDone += AfterUpdate;
                     ActiveProfile.RightTrigger.Trigger = controller.RightTrigger;

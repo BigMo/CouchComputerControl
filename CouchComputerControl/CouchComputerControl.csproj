@@ -130,7 +130,6 @@
     <Compile Include="UI\frmProfileConfig.Designer.cs">
       <DependentUpon>frmProfileConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\NiceKeys.cs" />
     <Compile Include="UI\ThumbControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -144,7 +143,6 @@
       <DependentUpon>TriggerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Vector2.cs" />
-    <Compile Include="WinAPI.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>

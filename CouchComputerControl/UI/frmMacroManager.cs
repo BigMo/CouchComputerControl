@@ -125,6 +125,7 @@ namespace CouchComputerControl.UI
             foreach (var item in items)
             {
                 lstMacros.Items.Remove(item);
+                Program.Macros.Remove((KeyMacro)item.Tag);
             }
         }
 
