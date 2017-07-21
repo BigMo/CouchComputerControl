@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,6 +16,12 @@ namespace CouchComputerControl
 {
     public partial class frmMain : MetroForm
     {
+        //TODO: Add third parties! (incl https://freesound.org/people/acclivity/)
+        private void PlaySound(Stream str)
+        {
+            using (var snd = new System.Media.SoundPlayer(str))
+                snd.Play();
+        }
         public frmMain()
         {
             InitializeComponent();
@@ -31,7 +38,13 @@ namespace CouchComputerControl
                 BindProfile(e.Item2);
             };
             Program.Simulator.AddDefaultProfile();
-            Program.Simulator.ArmedChanged += (o, e) => this.InvokeSafe(()=>UpdateArmedState());
+            Program.Simulator.ArmedChanged += (o, e) => {
+                this.InvokeSafe(() => UpdateArmedState());
+                if (Program.Simulator.Armed)
+                    PlaySound(Properties.Resources.beep_on);
+                else
+                    PlaySound(Properties.Resources.beep_off);
+            };
             UpdateArmedState();
             cfgProfile.Items.AddRange(Program.Simulator.Profiles.ToArray());
             cfgProfile.SelectedItem = Program.Simulator.ActiveProfile;

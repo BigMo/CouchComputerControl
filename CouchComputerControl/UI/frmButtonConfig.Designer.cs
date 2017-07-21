@@ -130,6 +130,7 @@
             this.cfgSingleKeyEnabled.Text = "Single key";
             this.cfgSingleKeyEnabled.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.cfgSingleKeyEnabled.UseSelectable = true;
+            this.cfgSingleKeyEnabled.CheckedChanged += new System.EventHandler(this.cfgSingleKeyEnabled_CheckedChanged);
             // 
             // cfgSingleKey
             // 
@@ -199,6 +200,7 @@
             this.cfgSpecialKeyEnabled.Text = "Special key";
             this.cfgSpecialKeyEnabled.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.cfgSpecialKeyEnabled.UseSelectable = true;
+            this.cfgSpecialKeyEnabled.CheckedChanged += new System.EventHandler(this.cfgSpecialKeyEnabled_CheckedChanged);
             // 
             // cfgSpecialKey
             // 
@@ -226,6 +228,7 @@
             this.cfgMacroEnabled.Text = "Macro";
             this.cfgMacroEnabled.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.cfgMacroEnabled.UseSelectable = true;
+            this.cfgMacroEnabled.CheckedChanged += new System.EventHandler(this.cfgMacroEnabled_CheckedChanged);
             // 
             // cfgRepeatEnabled
             // 

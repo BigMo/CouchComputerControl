@@ -84,16 +84,18 @@ namespace CouchComputerControl.UI
             cfgSpecialKey.DropDownStyle = ComboBoxStyle.DropDownList;
             cfgSpecialKey.SelectedIndexChanged += (o, e) =>
             {
+                cfgSpecialKeyEnabled.Checked = true;
                 config.Mode = ButtonConfiguration.eMode.SingleKey;
                 config.Key = ((SpecialKey_t)cfgSpecialKey.SelectedItem).Key;
             };
-            cfgSpecialKey.SelectedIndex = 0;
+            cfgSpecialKey.SelectedItem = cfgSpecialKey.SelectedItem = SPECIAL_KEYS[0];
             cfgSingleKey.GotFocus += (o, e) => cfgSingleKey.Text = "";
 
             cfgMacro.DataSource = Program.Macros.ToArray();
             cfgMacro.DropDownStyle = ComboBoxStyle.DropDownList;
             cfgMacro.SelectedIndexChanged += (o, e) =>
             {
+                cfgMacroEnabled.Checked = true;
                 config.Mode = ButtonConfiguration.eMode.Macro;
                 config.Macro = (KeyMacro)cfgMacro.SelectedItem;
             };
@@ -108,6 +110,7 @@ namespace CouchComputerControl.UI
         {
             e.Handled = true;
             cfgSingleKey.Text = e.KeyCode.ToString();
+            cfgSingleKeyEnabled.Checked = true;
             config.Key = e.KeyCode;
             config.Mode = ButtonConfiguration.eMode.SingleKey;
         }
@@ -122,6 +125,23 @@ namespace CouchComputerControl.UI
         private void metroButton2_Click(object sender, EventArgs e)
         {
             config.Mode = ButtonConfiguration.eMode.Disabled;
+        }
+
+        private void cfgSingleKeyEnabled_CheckedChanged(object sender, EventArgs e)
+        {
+            config.Mode = ButtonConfiguration.eMode.SingleKey;
+        }
+
+        private void cfgSpecialKeyEnabled_CheckedChanged(object sender, EventArgs e)
+        {
+            config.Mode = ButtonConfiguration.eMode.SingleKey;
+            config.Key = ((SpecialKey_t)cfgSpecialKey.SelectedItem).Key;
+        }
+
+        private void cfgMacroEnabled_CheckedChanged(object sender, EventArgs e)
+        {
+            config.Mode = ButtonConfiguration.eMode.Macro;
+            config.Macro = (KeyMacro)cfgMacro.SelectedItem;
         }
     }
 }

@@ -160,6 +160,21 @@ namespace CouchComputerControl.Simulation
                 pro.PlayMacro(cfg.Macro);
         }
 
+        private Vector2 CalcDeadZone(GamepadThumb input, ThumbConfiguration config)
+        {
+            var vec = (Vector2)input.Vector.Clone();
+            vec.X = ClampValue(vec.X, config.DeadZoneX / 100f);
+            vec.Y = ClampValue(vec.Y, config.DeadZoneY / 100f);
+            return vec;
+        }
+
+        private float ClampValue(float value, float min)
+        {
+            if (Math.Abs(value) < min || min >= 1f)
+                return 0;
+            
+            return Math.Sign(value) * (Math.Abs(value) - min) / (1f - min);
+        }
         private void AfterUpdate(object sender, SmartController.TickEventArgs e)
         {
             if (wasArmed)
@@ -170,8 +185,8 @@ namespace CouchComputerControl.Simulation
             }
             if (!Armed)
                 return;
-            var vec = Controller.RightThumb.Vector;
-            if (vec.Length > 0.1)
+            var vec = CalcDeadZone(Controller.RightThumb, ActiveProfile.RightThumb);
+            if (vec.Length > 0f)
             {
                 vec *= ActiveProfile.BaseCursorSpeed;
                 if (ActiveProfile.RightTrigger.Enabled || ActiveProfile.LeftTrigger.Enabled)

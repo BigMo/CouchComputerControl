@@ -208,6 +208,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logo02.ico" />
+    <None Include="Resources\beep_on.wav" />
+    <None Include="Resources\beep_off.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
